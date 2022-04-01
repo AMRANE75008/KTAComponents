@@ -25,13 +25,14 @@ namespace KTAComponents
                 cmd.CommandText = sql_request;
                 cmd.CommandType = System.Data.CommandType.Text;
 
-                cmd.Parameters.AddWithValue("@montant", amount/100);
+                cmd.Parameters.AddWithValue("@montant", amount / 100);
                 cmd.Parameters.AddWithValue("@jobid", kta_jobid);
 
                 cmd.ExecuteNonQuery();
 
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 LoggerConfiguration.GetLogger().TraceError("Erreur lors de la mise à jour DB de l'effet:" + ex.Message + " \n " + ex.StackTrace);
             }
         }
@@ -108,7 +109,8 @@ namespace KTAComponents
 
                 Decimal.TryParse(value, System.Globalization.NumberStyles.Currency, new System.Globalization.CultureInfo("fr-FR"), out retour);
             }
-            catch {
+            catch
+            {
                 try
                 {
                     Decimal.TryParse(value, System.Globalization.NumberStyles.Currency, new System.Globalization.CultureInfo("en-US"), out retour);
@@ -120,9 +122,9 @@ namespace KTAComponents
 
         public DateTime Parse(string value, string format)
         {
-            DateTime d = DateTime.Now; 
-            
-            if(!DateTime.TryParse(value, new System.Globalization.CultureInfo("fr-FR"), System.Globalization.DateTimeStyles.AdjustToUniversal,  out d))
+            DateTime d = DateTime.Now;
+
+            if (!DateTime.TryParse(value, new System.Globalization.CultureInfo("fr-FR"), System.Globalization.DateTimeStyles.AdjustToUniversal, out d))
             {
                 d = DateTime.Now;
                 LoggerConfiguration.GetLogger().TraceError("Erreur de conversion de date : " + value);
@@ -130,7 +132,7 @@ namespace KTAComponents
 
             return d;
         }
-        
+
         public DateTime Convert(string day, string month, string year)
         {
             return Parse(day + "/" + month + "/" + year, "dd/MM/yyyy");
@@ -152,7 +154,7 @@ namespace KTAComponents
         {
             return !input;
         }
-        
+
 
         // retourne un booléen en fonction d'un entier
         public bool ConvertIntToBool(decimal val)
@@ -309,24 +311,24 @@ namespace KTAComponents
         {
             try
             {
-                File.Copy(source,dest,true);
+                File.Copy(source, dest, true);
             }
             catch (Exception e)
-            { 
+            {
                 LoggerConfiguration.GetLogger().TraceError("Erreur utils.cs : " + e.Message + e.StackTrace);
                 throw e;
             }
         }
 
-        public bool FileName(string path, out string fileName,out string errMessage)
+        public void FileName(string path, out string fileName, out string errMessage)
         {
-            bool cheminCorrect = true;
+
             fileName = string.Empty;
             errMessage = null;
             try
             {
                 string[] listPath = null;
-               
+
                 if (!string.IsNullOrEmpty(path))
                 {
                     path = path.Replace("\\", " ");
@@ -336,33 +338,33 @@ namespace KTAComponents
                         if (i + 1 == listPath.Length)
                         {
                             fileName = listPath[i];
-                            return cheminCorrect;
+
                         }
                     }
                 }
                 else
                 {
-                    cheminCorrect = false;
+
+                    errMessage = "Le chemin ne doit pas être null ou vide";
                 }
-                return cheminCorrect;
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 errMessage = e.Message;
-                return cheminCorrect;
             }
-            
+
         }
 
         public void concatTwoString(string sInput1, string sInput2, out string sOutPut)
         {
             sOutPut = sInput1 + sInput2;
-            
+
         }
 
-        public bool UpdateSQLTableFromCSV(string PathFile,  string connString, string tableName, out string errMessage)
+        public bool UpdateSQLTableFromCSV(string PathFile, string connString, string tableName, out string errMessage)
         {
-            
+
 
             int nobColumn = 0;
             string columns = null;
@@ -372,12 +374,12 @@ namespace KTAComponents
                 //lire le fichier csv
                 var csvRow = File.ReadAllLines(PathFile, Encoding.Default).ToList();
                 int rowCount = 0;
-                
+
                 SqlConnection conn = new SqlConnection(connString);
 
-                using (conn )
+                using (conn)
                 {
-                  
+
 
 
                     #region Ouvrir la tableName et récuperer les colonnes dans une seule ligne séparer par une virgule
@@ -449,14 +451,14 @@ namespace KTAComponents
         /// <param name="errMessage"></param>
         /// <returns></returns>
 
-        public bool deleteTable(string connString ,string tableName, out string errMessage)
+        public bool deleteTable(string connString, string tableName, out string errMessage)
         {
             errMessage = "";
             SqlConnection conn = new SqlConnection(connString);
             try
             {
                 int rowCount = 0;
-                using ( conn )
+                using (conn)
                 {
 
                     conn.Open();
@@ -502,31 +504,31 @@ namespace KTAComponents
                         errMessage = "Cette chaine n'est pas un nombre veuillez vérifier";
                         return isnumber;
                     }
-                    
+
                 }
                 else
                 {
                     errMessage = "La chaine ne peut pas être vide";
                     return false;
                 }
-                    
-                   
+
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 errMessage = e.Message;
                 isnumber = false;
                 return isnumber;
 
             }
-            
+
 
 
 
         }
 
 
-        public void UpdateDocumentFieldValue(string sessionId, string docId,string tableName,int indexColumn,string newValue)
+        public void UpdateDocumentFieldValue(string sessionId, string docId, string tableName, int indexColumn, string newValue)
         {
             var cds = new CaptureDocumentService();
 
