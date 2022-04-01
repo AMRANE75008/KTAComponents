@@ -21,8 +21,10 @@ namespace KTAComponentsTest
 
             Utils utl = new Utils();
             bool isnumber = utl.isNumber("", out errMessage);
+
+            string EnvironnementName = utl.getComputerName();
             Console.WriteLine(isnumber);
-            Console.WriteLine(errMessage);
+            Console.WriteLine(EnvironnementName);
 
             Console.Read();
 
