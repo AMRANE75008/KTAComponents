@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTAComponents", "KTAComponents\KTAComponents.csproj", "{27F19B5D-5B23-4E2F-ABA6-398BFC786888}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTAComponentsTest", "KTAComponentsTest\KTAComponentsTest.csproj", "{D30FF441-860F-4E60-AE29-8F1B3051E32D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvToDataTable", "CsvToDataTable\CsvToDataTable.csproj", "{62EF9B64-B83E-40A4-BDF0-7D32216226A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{D30FF441-860F-4E60-AE29-8F1B3051E32D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D30FF441-860F-4E60-AE29-8F1B3051E32D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D30FF441-860F-4E60-AE29-8F1B3051E32D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62EF9B64-B83E-40A4-BDF0-7D32216226A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62EF9B64-B83E-40A4-BDF0-7D32216226A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62EF9B64-B83E-40A4-BDF0-7D32216226A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62EF9B64-B83E-40A4-BDF0-7D32216226A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
